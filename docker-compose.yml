@@ -1,4 +1,4 @@
-version: "2"
+version: "3.0"
 
 services:
   pyspark-nb:
@@ -6,3 +6,5 @@ services:
     ports:
       - "8888:8888"
       - "4040:4040"
+    volumes:
+      - "./examples:/home/jovyan/examples/:rw"

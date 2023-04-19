@@ -26,13 +26,6 @@ in a browser.
 The [examples](./examples) directory gives demos of interacting
 with a CSV data set through the PySpark API.
 
-To use the examples in the notebook they will need to be copied to the container
-once volume once it is created. Run
-
-```sh
-docker-compose cp examples/ pyspark-nb:/home/jovyan/
-```
-
 ## Datasets
 
 For example datasets to experiment with see:
