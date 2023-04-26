@@ -8,6 +8,7 @@ Schema: {
   name: str
   time: int
 }
+It intentionally includes bad data - in this case negative heart rates.
 """
 
 import argparse
@@ -61,7 +62,8 @@ def health_records(year: int, device_id: int, nrecords: int, out: Optional[list]
 
     :param year: An int specifying the year for timestamps
     :param device_id: An integer identifying the device
-    :param nrecords: The number of records to generate
+    :param nrecords: The number of records to generate. A single randomly selected point will be negated
+                     to given an example of bad data
     :param out: If given then the records are appended to the given list, else a new list is created
     :return: The list containing the new data
     """
@@ -72,9 +74,12 @@ def health_records(year: int, device_id: int, nrecords: int, out: Optional[list]
 
     hour_start_dt = dt.datetime(year, month=1, day=1, hour=random.randint(0, 23)) + dt.timedelta(days=day)
     hour_start_ts = int(hour_start_dt.timestamp())
+    bad_data_index = random.randint(0, nrecords - 1)
     data = [] if out is None else out
     for index in range(nrecords):
         heartrate = random.gauss(mu=HEARTRATE_MEAN)
+        if index == bad_data_index:
+            heartrate = -heartrate
         data.append({"device_id": device_id,
                      "heartrate": heartrate,
                      "name": DEVICE_NAME_MAPPING[device_id],
