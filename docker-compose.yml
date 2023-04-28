@@ -2,7 +2,7 @@ version: "3.0"
 
 services:
   pyspark-nb:
-    image: jupyter/pyspark-notebook:spark-3.4.0
+    build: ./image
     ports:
       - "8888:8888"
       - "4040:4040"
