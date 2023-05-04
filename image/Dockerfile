@@ -4,4 +4,4 @@ FROM jupyter/pyspark-notebook:spark-3.3.0
 RUN pip install \
   delta-spark
 
-COPY ./sampledata /
+COPY ./sampledata/ /sampledata/
